@@ -57,7 +57,7 @@ function move_restored_images( $post_id ) {
 
                 // Move resized images back to original directory.
                 foreach ( $attachment_meta['sizes'] as $size_name => $size_info ) {
-                    $resized_file_path = trailingslashit( $upload_dir['basedir'] ) . $size_info['file'];
+                    $resized_file_path = trailingslashit( $original_file_dirname ) . $size_info['file'];
                     if ( file_exists( trailingslashit( $trash_images_dirname ) . basename( $resized_file_path ) ) ) {
                         rename( trailingslashit( $trash_images_dirname ) . basename( $resized_file_path ), $resized_file_path );
                     }
