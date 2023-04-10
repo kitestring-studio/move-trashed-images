@@ -40,20 +40,16 @@ class WP_Media_Delete_Command extends WP_CLI_Command {
         $post_type = get_post_type( $post_id );
 
         if ( 'attachment' !== $post_type ) {
-            return [ 'error', "Posts of type '{$post_type}' cannot be deleted with this command." ];
+            WP_CLI::error( "Posts of type '{$post_type}' cannot be deleted with this command." );
         }
 
         if ( ! $assoc_args['force']
              //             && ( 'post' !== $post_type && 'page' !== $post_type )
              && ( ! defined( 'MEDIA_TRASH' ) || ! MEDIA_TRASH ) ) {
-            return [
-                'error',
-                "Posts of type '$post_type' do not support being sent to trash unless MEDIA_TRASH === true.\n"
-                . 'Please use the --force flag to skip trash and delete them permanently.',
-            ];
+            WP_CLI::error( "Posts of type '$post_type' do not support being sent to trash unless MEDIA_TRASH === true.\n"
+                            . 'Please use the --force flag to skip trash and delete them permanently.' );
         } else {
-            // move files here
-            echo "else";
+            // move files here?
         }
 
         if ( ! wp_delete_post( $post_id, $assoc_args['force'] ) ) {
