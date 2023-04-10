@@ -14,16 +14,21 @@ if ( ! class_exists( 'WP_CLI' ) || ! class_exists( 'WP_CLI_Command' ) ) {
 class WP_Media_Delete_Command extends WP_CLI_Command {
 
     /**
-     * Deletes media file and moves it to trash.
+     * Trashes media file and moves it to trash directory.
      *
      * ## OPTIONS
      *
      * <id>
      * : ID of the media file to delete.
      *
+     * [--force]
+     * : Skip the trash bin.
+     *
      * ## EXAMPLES
      *
-     *     wp media delete 123
+     * # Trash a Media Library attachment
+     * $ wp media delete 123
+     * Success: Trashed post 123.
      *
      * @param array $args Command arguments.
      * @param array $assoc_args Command associative arguments.
