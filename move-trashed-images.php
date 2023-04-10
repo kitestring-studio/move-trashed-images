@@ -6,6 +6,9 @@ Version: 1.0
 Author: Your Name
 */
 
+require_once "Media_Command.php";
+//require_once "functions.php";
+
 // Move trashed images to trash_images directory.
 add_action( 'wp_trash_post', 'move_trashed_images' );
 function move_trashed_images( $post_id ) {
@@ -70,4 +73,16 @@ function move_restored_images( $post_id ) {
             }
         }
     }
+}
+
+add_filter( 'pre_delete_post', 'delete_trashed_images', 10, 3 );
+add_filter( 'pre_delete_attachment', 'delete_trashed_images', 10, 3 );
+
+function delete_trashed_images( $delete, $post, $force_delete ) {
+    $post_type = get_post_type( $post );
+    if ( $post_type == 'attachment' ) {
+        $delete = false;
+    }
+
+    return false;
 }
