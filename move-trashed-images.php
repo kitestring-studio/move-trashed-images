@@ -2,7 +2,7 @@
 /*
 Plugin Name: Move Trashed Images
 Description: Move trashed images to a different directory on the server.
-Version: 1.0
+Version: 1.0.1
 Author: Gabe Herbert
 GitHub Plugin URI: https://github.com/kitestring-studio/move-trashed-images
 */
