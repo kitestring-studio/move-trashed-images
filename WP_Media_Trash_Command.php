@@ -11,7 +11,7 @@ if ( ! class_exists( 'WP_CLI' ) || ! class_exists( 'WP_CLI_Command' ) ) {
 /**
  * Implements 'wp media delete' command.
  */
-class WP_Media_Delete_Command extends WP_CLI_Command {
+class WP_Media_Trash_Command extends WP_CLI_Command {
 
     /**
      * Trashes media file and moves it to trash directory.
@@ -57,7 +57,7 @@ class WP_Media_Delete_Command extends WP_CLI_Command {
             // move files here?
         }
 
-        if ( ! wp_delete_post( $post_id, $assoc_args['force'] ) ) {
+        if ( ! wp_delete_post( $post_id, false ) ) {
             WP_CLI::error( "Error moving media attachment {$post_id} to trash." );
         } else {
             $action = $assoc_args['force'] || 'trash' === $status || 'revision' === $post_type ? 'Deleted' : 'Trashed';
