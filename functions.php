@@ -1,8 +1,8 @@
 <?php
 
-// exit if accessed directly
-if ( ! defined( 'ABSPATH' ) )
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+    die;
+}
 
 
 function move_trashed_images( $post_id ) {
